@@ -28,11 +28,7 @@
         in
         with pkgs;
         {
-          packages.probe-rs = pkgs.callPackage ./probe-rs.nix {
-            inherit (pkgs.darwin.apple_sdk.frameworks) AppKit;
-            inherit (pkgs.darwin) DarwinTools;
-            inherit rustPlatform;
-          };
+          packages.probe-rs = pkgs.callPackage ./probe-rs.nix { };
           devShells.default = mkShell {
             # 👇 and now we can just inherit them
             inherit buildInputs nativeBuildInputs;
