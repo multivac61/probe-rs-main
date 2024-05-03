@@ -20,7 +20,6 @@
           };
 
           rustToolchain = pkgs.pkgsBuildHost.rust-bin.fromRustupToolchainFile ./rust-toolchain-nightly.toml;
-          rustPlatform = rustToolchain.rustPlatform;
           # new! 👇
           nativeBuildInputs = with pkgs; [ rustToolchain pkg-config ];
           # also new! 👇
@@ -28,7 +27,7 @@
         in
         with pkgs;
         {
-          packages.probe-rs = pkgs.callPackage ./probe-rs.nix { };
+          packages.default = pkgs.callPackage ./probe-rs.nix { };
           devShells.default = mkShell {
             # 👇 and now we can just inherit them
             inherit buildInputs nativeBuildInputs;
